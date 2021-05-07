@@ -7,12 +7,14 @@ class NeedlemanSearch {
 	 * @param {Number} indePenalty penalty for indentation unmatch
 	 * @param {Number} missPenalty penalty for matching miss
 	 * @param {Number} matchReward reward for value matching
+	 * @param {(String, String, Number, Number) => Number} scoringFn callback for calculating score
 	 * @param {(String) => Number} calcMinExpectedScore callback for calculating minimal score
 	 */
 	constructor(
 		indePenalty = -1,
 		missPenalty = -2,
 		matchReward = 5,
+		scoringFn = null,
 		calcMinExpectedScore = null
 	) {
 		this.indePenalty = indePenalty;
@@ -22,10 +24,18 @@ class NeedlemanSearch {
 		this.calcMinExpectedScore = calcMinExpectedScore
 			? calcMinExpectedScore.bind(this)
 			: this.defaultMinExpectedScore.bind(this);
+
+		this.Score = scoringFn
+			? scoringFn.bind(this)
+			: this.defaultScoring.bind(this);
 	}
 
 	defaultMinExpectedScore(needle) {
 		return (needle.length * this.matchReward) / 2.0;
+	}
+
+	defaultScoring(needle, match, i, j) {
+		return needle[i - 1] === match[j - 1] ? this.matchReward : this.missPenalty;
 	}
 
 	search(needle, pool) {
@@ -33,7 +43,7 @@ class NeedlemanSearch {
 		const matches = pool.reduce((acc, str) => {
 			const val = this.matchingScore(needle, str);
 			if (val > minExpectedVal) {
-				acc[val] = [...(acc[val] ? acc[val] : []), str]
+				acc[val] = [...(acc[val] ? acc[val] : []), str];
 			}
 			return acc;
 		}, {});
@@ -57,17 +67,12 @@ class NeedlemanSearch {
 			M[0][i] = i * this.indePenalty;
 		}
 
-		let score;
 		for (let i = 1; i <= needleLower.length; i++) {
 			for (let j = 1; j <= matchLower.length; j++) {
-				score =
-					needleLower[i - 1] === matchLower[j - 1]
-						? this.matchReward
-						: this.missPenalty;
 				M[i][j] = Math.max(
-					M[i - 1][j - 1] + score,
-					M[i][j - 1] + this.indePenalty,
-					M[i - 1][j] + this.indePenalty
+					M[i - 1][j - 1] + this.Score(needleLower, matchLower, i, j), // Match
+					M[i][j - 1] + this.indePenalty, // Insert
+					M[i - 1][j] + this.indePenalty // Delete
 				);
 			}
 		}

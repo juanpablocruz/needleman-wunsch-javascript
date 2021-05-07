@@ -22,4 +22,5 @@ Or you can tweak the different values:
 - indePenalty: The default is -1. This will be subtracted from the score for each space error on letters from the pool item.
 - missPenalty: The default is -2. This will be subtracted from the score for each miss on letters from the pool item.
 - matchReward: The default is +5. This will be added to the score for each letter matching the pool item.
+- scoringFn: The default compares a direct match. This provides how the scoring of an element is calculated for each pool item.
 - calcMinExpectedScore: The default calculates the (needle.length * this.matchReward) / 2.0;
