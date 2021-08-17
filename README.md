@@ -2,6 +2,15 @@
 
 This project provides a simple implementation of the Needleman-Wunsch algorithm for searching strings in a pool while supporting errors in the needle.
 
+## Installation
+
+Download the package and install it to your dependencies
+
+```bash
+npm install needleman-js
+```
+
+
 ## Usage
 
 You can work with this class as is, with the default configuration:
@@ -24,3 +33,13 @@ Or you can tweak the different values:
 - matchReward: The default is +5. This will be added to the score for each letter matching the pool item.
 - scoringFn: The default compares a direct match. This provides how the scoring of an element is calculated for each pool item.
 - calcMinExpectedScore: The default calculates the (needle.length * this.matchReward) / 2.0;
+
+
+## Authors
+
+- [Juan Pablo Cruz](https://www.github.com/juanpablocruz)
+
+
+## License
+
+[MIT](LICENSE)
