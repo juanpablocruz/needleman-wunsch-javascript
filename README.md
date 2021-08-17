@@ -16,7 +16,7 @@ npm install needleman-js
 You can work with this class as is, with the default configuration:
 
 ```javascript
-const NeedlemanSearch = require('needleman');
+const NeedlemanSearch = require('needleman-js');
 
 const needleman = new NeedlemanSearch();
 
@@ -34,6 +34,14 @@ Or you can tweak the different values:
 - scoringFn: The default compares a direct match. This provides how the scoring of an element is calculated for each pool item.
 - calcMinExpectedScore: The default calculates the (needle.length * this.matchReward) / 2.0;
 
+```javascript
+const needleman = new NeedlemanSearch(
+	indePenalty, 
+	missPenalty, 
+	matchReward, 
+	scoringFn, 
+	calcMinExpectedScore);
+```
 
 ## Authors
 
