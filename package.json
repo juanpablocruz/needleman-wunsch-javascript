@@ -5,6 +5,9 @@
   "main": "src/index.js",
   "homepage": "https://github.com/juanpablocruz/needleman-wunsch-javascript",
   "repository": "npm/npm",
+  "publishConfig": {
+    "juanpablocruz:registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
     "test": "nyc ./node_modules/.bin/mocha --recursive --reporter spec",
     "start": "node src/index.js"
