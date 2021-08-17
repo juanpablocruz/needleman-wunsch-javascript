@@ -1,6 +1,6 @@
 {
   "name": "needleman-js",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Needleman-Wunsch algorithm in javascript",
   "main": "src/index.js",
   "homepage": "https://github.com/juanpablocruz/needleman-wunsch-javascript",
