@@ -1,8 +1,9 @@
 {
-  "name": "needleman",
-  "version": "1.0.0",
+  "name": "needleman-js",
+  "version": "1.0.1",
   "description": "Needleman-Wunsch algorithm in javascript",
   "main": "src/index.js",
+  "homepage": "https://github.com/juanpablocruz/needleman-wunsch-javascript",
   "scripts": {
     "test": "nyc ./node_modules/.bin/mocha --recursive --reporter spec",
     "start": "node src/index.js"
@@ -13,6 +14,8 @@
     "react"
   ],
   "author": "Juan Pablo Cruz <juanpablocruzmaseda@gmail.com>",
+  "contributors": [],
+  "bugs": {},
   "license": "MIT",
   "devDependencies": {
     "chai": "^4.3.4",
