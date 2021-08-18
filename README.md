@@ -1,3 +1,4 @@
+[![Tests](https://github.com/juanpablocruz/needleman-wunsch-javascript/actions/workflows/test.yml/badge.svg)](https://github.com/juanpablocruz/needleman-wunsch-javascript/actions/workflows/test.yml)
 # Needleman-Wunsch algorithm
 
 This project provides a simple implementation of the Needleman-Wunsch algorithm for searching strings in a pool while supporting errors in the needle.
