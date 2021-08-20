@@ -43,6 +43,31 @@ const needleman = new NeedlemanSearch(
 	calcMinExpectedScore);
 ```
 
+## About the algorithm
+This package is an implementation of Needleman-Wunsch algorithm. It is an algorithm developed in bioinformatics to align protein or nucleotide sequences. But it provides a fast and simple way of searching a needle in a pool of elements allowing some discordances:
+
+```javascript
+
+const pool = ["cat", "cats", "cut", "pig","dog", "elephant", "camel"]
+
+const resultCat = needleman.search("cat", pool); 
+// { '8': [ 'cut' ], '14': [ 'cats' ], '15': [ 'cat' ] }
+const resultCet = needleman.search("cet", pool); 
+// { '8': [ 'cat', 'cut' ] }
+
+```
+
+The output will be an object with the matching score as keys and an array of the pool elements as values.
+
+We can tweak the algorithm by setting three variables:
+- indePenalty: the scoring penalty when the matching elements are not aligned, i.e. there are some characters or spaces that will be required to match: the pair: (cat, cats) will require an element 's' to be inserted.
+- missPenalty: The scoring penalty when two elements do not match directly. 
+- matchReward: How much points will be awarded when two elements match.
+
+With these three variables we can build a matrix for all the scores that would have each element of the needle compared with each element of each iteration of the pool:
+
+![Sequence alignment](https://upload.wikimedia.org/wikipedia/commons/3/3f/Needleman-Wunsch_pairwise_sequence_alignment.png)
+
 ## Authors
 
 - [Juan Pablo Cruz](https://www.github.com/juanpablocruz)
