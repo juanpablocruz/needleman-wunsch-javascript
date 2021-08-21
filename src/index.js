@@ -3,23 +3,31 @@
  */
 class NeedlemanSearch {
   /**
-     *
-     * @param {Number} indePenalty penalty for indentation unmatch
-     * @param {Number} missPenalty penalty for matching miss
-     * @param {Number} matchReward reward for value matching
-     * @param {(String, String, Number, Number) => Number} scoringFn callback for calculating score
-     * @param {(String) => Number} calcMinExpectedScore callback for calculating minimal score
-     */
+   * @param {object} config
+   * @property {Number} config.indePenalty penalty for indentation unmatch
+   * @property {Number} config.missPenalty penalty for matching miss
+   * @property {Number} config.matchReward reward for value matching
+   * @property {(String, String, Number, Number) => Number} config.scoringFn callback for calculating score
+   * @property {(String) => Number} config.calcMinExpectedScore callback for calculating minimal score
+   */
   constructor (
-    indePenalty = -1,
-    missPenalty = -2,
-    matchReward = 5,
-    scoringFn = null,
-    calcMinExpectedScore = null
+    {
+      indePenalty,
+      missPenalty,
+      matchReward,
+      scoringFn,
+      calcMinExpectedScore
+    } = {
+      indePenalty: -1,
+      missPenalty: -2,
+      matchReward: 5,
+      scoringFn: null,
+      calcMinExpectedScore: null
+    }
   ) {
-    this.indePenalty = indePenalty
-    this.missPenalty = missPenalty
-    this.matchReward = matchReward
+    this.indePenalty = indePenalty || -1
+    this.missPenalty = missPenalty || -2
+    this.matchReward = matchReward || 5
 
     this.calcMinExpectedScore = calcMinExpectedScore
       ? calcMinExpectedScore.bind(this)
